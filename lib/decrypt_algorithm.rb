@@ -46,5 +46,4 @@ class DecryptAlgorithm
   end
 
 
-
 end

@@ -1,8 +1,8 @@
 class Enigma
 
-  def initialize
-    # @encryption =
-  end
+  # def initialize
+  #   # @encryption =
+  # end
 
   def encrypt(message, key, date)
     encrypted_msg = {}

@@ -8,8 +8,12 @@ class Key
 
   def random_num
     @key = ""
-    5.times { key << rand(0..9).to_s }
-      return @key.to_i
+    5.times { key << rand(0..9).to_s}
+      if key[0] == "0"
+        "%05d" % (@key.to_i)
+      else
+        @key.to_i
+      end
   end
 
   def split_up
