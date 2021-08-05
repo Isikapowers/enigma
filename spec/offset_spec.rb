@@ -21,7 +21,7 @@ RSpec.describe Offset do
     end
 
     it "can calculate square numberic form and return last four" do
-      expect(offset.last_four).to eq(4041)
+      expect(offset.last_four).to eq([4, 0, 4, 1])
     end
 
     it "can get A off set" do
