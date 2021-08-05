@@ -21,11 +21,11 @@ RSpec.describe Key do
       expect(key.random_num).to eq("02715".to_i)
     end
 
-    it "can split up nums into 2 digit group" do
+    xit "can split up nums into 2 digit group" do
       expect(key.split_up).to eq([02, 27, 71, 15])
     end
 
-    it "can get individual key" do
+    xit "can get individual key" do
       expect(key.key_a).to eq(02)
       expect(key.key_b).to eq(27)
       expect(key.key_c).to eq(71)
