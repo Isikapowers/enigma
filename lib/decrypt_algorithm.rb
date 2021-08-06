@@ -2,35 +2,27 @@ require "date"
 require_relative "./key_makable"
 require_relative "./alphabetable"
 
-class EncryptAlgorithm
+class DecryptAlgorithm
 
   include KeyMakable
   include Alphabetable
-
+  
   attr_reader :message,
               :key,
               :date,
-              :offset,
-              :characters
+              :characters,
+              :offset
 
   def initialize(message, key, date)
     @message = message
     @key = key
     @date = date
     @offset = Offset.new
-    @characters = ("a".."z").to_a << " "
+    @characters =("a".."z").to_a << " "
   end
 
   def split_msg(message)
     @message = message.split("")
-  end
-
-  def key
-    @key ||= if @key
-      Key.new(@key)
-    else
-      Key.new
-    end
   end
 
   def find_character
@@ -51,13 +43,14 @@ class EncryptAlgorithm
 
   def rotation
     arr = find_character
-    arr.map { |num| num += shift(arr.index(num)) }
+    arr.map { |num| num -= shift(arr.index(num)) }
   end
 
-  def encrypted_msg
-    encrypted_msg = rotation
-    encrypted_msg.join
-    encrypted_msg.map { |num| @characters.index(num) }
+  def decrypted_msg
+    decrypted_msg = rotation
+    decrypted_msg.join
+    decrypted_msg.map { |num| @characters.index(num) }
   end
+
 
 end

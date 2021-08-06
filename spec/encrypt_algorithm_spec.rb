@@ -5,6 +5,8 @@ require "date"
 require "./lib/offset"
 require "./lib/key"
 require "./lib/encrypt_algorithm"
+require "./lib/key_makable"
+require "./lib/alphabetable"
 
 RSpec.describe EncryptAlgorithm do
    context "States" do
