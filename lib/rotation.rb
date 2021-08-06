@@ -1,45 +1,22 @@
-require_relative "./key_makable"
-# require_relative "./alphabetable"
-require_relative "./offset"
+require "./shift"
 
 class Rotation
-
-  include KeyMakable
-  # include Alphabetable
 
   attr_reader :message,
               :key,
               :date,
-              # :offset,
               :characters
 
   def initialize(message, key, date)
     @message = message.downcase
     @key = key
     @date = date
-    # @offset = Offset.new
     @characters = ("a".."z").to_a << " "
   end
 
   def split_msg(message)
     @message = message.split("")
   end
-
-  # def shift(msg_letter_index)
-  #   shift_index = 0
-  #   @message.each do |letter|
-  #     if letter[msg_letter_index] % 4 == 0
-  #       shift_index = key_a + @offset.offset_a
-  #     elsif letter[msg_letter_index] % 4 == 1
-  #       shift_index = key_b + @offset.offset_b
-  #     elsif letter[msg_letter_index] % 4 == 2
-  #       shift_index = key_c + @offset.offset_c
-  #     elsif letter[msg_letter_index] % 4 == 3
-  #       shift_index = key_d + @offset.offset_d
-  #     end
-  #   end
-  #   shift_index
-  # end
 
   def rotate_forwards(message, shift_amounts)
     encoded_message = split_msg(message).map.with_index do |character, index|
@@ -64,8 +41,24 @@ class Rotation
       character
     end
   end
+
 end
 
+# def shift(msg_letter_index)
+#   shift_index = 0
+#   @message.each do |letter|
+#     if letter[msg_letter_index] % 4 == 0
+#       shift_index = key_a + @offset.offset_a
+#     elsif letter[msg_letter_index] % 4 == 1
+#       shift_index = key_b + @offset.offset_b
+#     elsif letter[msg_letter_index] % 4 == 2
+#       shift_index = key_c + @offset.offset_c
+#     elsif letter[msg_letter_index] % 4 == 3
+#       shift_index = key_d + @offset.offset_d
+#     end
+#   end
+#   shift_index
+# end
 
 #   def rotation
 #     rotation = []

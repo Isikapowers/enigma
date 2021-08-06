@@ -57,11 +57,15 @@ RSpec.describe Rotation do
     it "can rotate backwards for decryption" do
       expected = "hello world"
 
-      expect(rotation.rotate_forwards("uxpcas fddh", [13, 46, 4, 45])).to eq(expected)
+      expect(rotation.rotate_backwards("uxpcas fddh", [13, 46, 4, 45])).to eq(expected)
     end
 
-    it "can convert letters" do
-      expect(rotation.letter_conversion("h", 8, [13, 46, 4, 45], ))
+    it "can convert letters using index forwards" do
+      expect(rotation.letter_conversion("h", 8, [13, 46, 4, 45], 1)).to eq("u")
+    end
+
+    it "can convert letters using index backwards" do
+      expect(rotation.letter_conversion("h", 8, [13, 46, 4, 45], -1)).to eq("v")
     end
   end
 end

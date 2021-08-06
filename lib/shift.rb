@@ -34,12 +34,6 @@ class Shift
     num.to_s.split("")[-4..-1].map { |num| num.to_i }
   end
 
-  # def offset_numbers
-  #   last_four_digits(date_format).map do |num|
-  #     num.to_i
-  #   end
-  # end
-
   def shift_values
     numbers = offset_numbers(date_format).zip(keys(random_number))
     #pry(#<Shift>)> numbers => [[9, 4], [6, 40], [1, 3], [6, 39]]
