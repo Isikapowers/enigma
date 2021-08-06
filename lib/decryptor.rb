@@ -21,5 +21,4 @@ class Decryptor < Algorithm
     decrypted_msg.map { |num| @characters.index(num) }
   end
 
-
 end
