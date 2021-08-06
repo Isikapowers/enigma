@@ -13,3 +13,18 @@
 # Created 'encrypted.txt' with the key 82648 and date 240818
 # $ ruby ./lib/decrypt.rb encrypted.txt decrypted.txt 82648 240818
 # Created 'decrypted.txt' with the key 82648 and date 240818
+
+require "./lib/enigma"
+
+excrypted_file, decrypted_file, key, date=ARGV
+
+enigma = Enigma.new
+
+encrypted_text = open(encryted_file, "r") { |file| file.read }
+
+result = enigma.decrypt(encrypted_text, key, date)
+
+decrypter = open(decrypted_file, "w")
+  decrypter.write(result[:decryption])
+
+puts "Created '#{decrypted_file}' with the key #{result[:key]}, date #{result[:date]}"
