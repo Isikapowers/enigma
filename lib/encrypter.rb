@@ -4,7 +4,7 @@ require_relative "./alphabetable"
 require_relative "./offset"
 require_relative "./algorithm"
 
-class Encryptor < Algorithm
+class Encrypter < Algorithm
 
 #   def random_key
 #     if @key ||= @key
