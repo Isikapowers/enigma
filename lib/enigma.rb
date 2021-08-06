@@ -4,7 +4,11 @@ class Enigma
     # @encryption =
   end
 
-  def encrypt(message, key, date)
+  def today_date(date=Time.now)
+    date.strftime("%d%m%y")
+  end  
+
+  def encrypt(message, key, date=today_date)
     encrypted_msg = {}
 
     { encryption: "",

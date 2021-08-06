@@ -14,4 +14,20 @@ module KeyMakable
     end
   end
 
+  def key_a
+    split_up[0]
+  end
+
+  def key_b
+    split_up[1]
+  end
+
+  def key_c
+    split_up[2]
+  end
+
+  def key_d
+    split_up[3]
+  end
+
 end
