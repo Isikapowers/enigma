@@ -3,17 +3,17 @@ SimpleCov.start
 
 require "date"
 require "./lib/offset"
-require "./lib/algorithm"
-require "./lib/encryptor"
-require "./lib/key_makable"
-require "./lib/alphabetable"
+# require "./lib/algorithm"
+require "./lib/encrypter"
+# require "./lib/key_makable"
+# require "./lib/alphabetable"
 
-RSpec.describe Encryptor do
+RSpec.describe Encrypter do
    context "States" do
-     encrypt = Encryptor.new("hello world", "02715", "040895")
+     encrypt = Encrypter.new("hello world", "02715", "040895")
 
      it "exists and has attributes" do
-       expect(encrypt).to be_a(Encryptor)
+       expect(encrypt).to be_a(Encrypter)
        expect(encrypt.message).to eq("hello world")
        expect(encrypt.key).to eq("02715")
        expect(encrypt.date).to eq("040895")
@@ -50,7 +50,7 @@ RSpec.describe Encryptor do
    end
 
    context "Methods" do
-     encrypt = Encryptor.new("hello world", "02715", "040895")
+     encrypt = Encrypter.new("hello world", "02715", "040895")
 
      it "can split a message into chars" do
        expected = ["h", "e", "l", "l", "o", " ", "w", "o", "r", "l", "d"]
@@ -82,7 +82,7 @@ RSpec.describe Encryptor do
      # end
 
    context "KeyMakable Module" do
-     encrypt = Encryptor.new("hello world", "02715", "040895")
+     encrypt = Encrypter.new("hello world", "02715", "040895")
 
      it "can generate random 5 digit key" do
        expect(encrypt.digits_generator).to be_between(00000, 99999)

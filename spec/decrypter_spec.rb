@@ -4,16 +4,16 @@ SimpleCov.start
 require "date"
 require "./lib/offset"
 require "./lib/algorithm"
-require "./lib/decryptor"
+require "./lib/decrypter"
 require "./lib/key_makable"
 require "./lib/alphabetable"
 
-RSpec.describe Decryptor do
+RSpec.describe Decrypter do
    context "States" do
-     decrypt = Decryptor.new("keder ohulw", "02715", "040895")
+     decrypt = Decrypter.new("keder ohulw", "02715", "040895")
 
      it "exists and has attributes" do
-       expect(decrypt).to be_a(Decryptor)
+       expect(decrypt).to be_a(Decrypter)
        expect(decrypt.message).to eq("keder ohulw")
        expect(decrypt.key).to eq("02715")
        expect(decrypt.date).to eq("040895")
@@ -50,7 +50,7 @@ RSpec.describe Decryptor do
    end
 
    context "Methods" do
-     decrypt = Decryptor.new("keder ohulw", "02715", "040895")
+     decrypt = Decrypter.new("keder ohulw", "02715", "040895")
 
      xit "can split a message into chars" do
        expected = ["k", "e", "d", "e", "r", " ", "o", "h", "u", "l", "w"]
