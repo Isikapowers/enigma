@@ -2,9 +2,9 @@ require "date"
 require_relative "./key_makable"
 require_relative "./alphabetable"
 require_relative "./offset"
-require_relative "./algorithm"
+require_relative "./rotation"
 
-class Encrypter < Algorithm
+class Encrypter
 
 #   def random_key
 #     if @key ||= @key

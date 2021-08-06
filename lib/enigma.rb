@@ -1,4 +1,7 @@
 require "date"
+require "./lib/shift"
+require "./lib/rotator"
+require './lib/generator'
 
 class Enigma
 

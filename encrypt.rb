@@ -7,8 +7,6 @@
   # your program should output to the screen the file it wrote to,
    # the key and the date.
 
-require "simplecov"
-SimpleCov.start
 
 require "./lib/enigma"
 

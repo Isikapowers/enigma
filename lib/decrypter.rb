@@ -4,7 +4,7 @@ require_relative "./alphabetable"
 require_relative "./algorithm"
 
 
-class Decrypter < Algorithm
+class Decrypter
 
   def find_character
     @message.map { |char| @characters.index(char) }

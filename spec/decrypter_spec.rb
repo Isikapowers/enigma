@@ -6,7 +6,7 @@ require "./lib/offset"
 require "./lib/algorithm"
 require "./lib/decrypter"
 require "./lib/key_makable"
-require "./lib/alphabetable"
+# require "./lib/alphabetable"
 
 RSpec.describe Decrypter do
    context "States" do
