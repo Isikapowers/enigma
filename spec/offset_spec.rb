@@ -30,7 +30,6 @@ RSpec.describe Offset do
       expect(offset.last_four_digits).to eq([4, 0, 4, 1])
     end
 
-<<<<<<< HEAD
     it "can get A off set" do
       allow(offset).to receive(:date).and_return("050821")
 
@@ -108,7 +107,8 @@ RSpec.describe Offset do
                    "z" => 26,
                    " " => 27 }
       expect(offset.alphabet_counter).to eq(expected)
-=======
+    end
+
     xit "can get A off set" do
       expect(offset.offset_a).to eq(1)
     end
@@ -123,7 +123,6 @@ RSpec.describe Offset do
 
     xit "can get D off set" do
       expect(offset.offset_d).to eq(5)
->>>>>>> 34b4c55b1a5379bf9be29a4296dafcf1b854c285
     end
   end
 end
