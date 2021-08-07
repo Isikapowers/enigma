@@ -2,16 +2,16 @@ require "date"
 
 class Shift
 
-  attr_reader :random_number,
+  attr_reader :key,
               :date
 
-  def initialize(random_number, date=Time.new)
-    @random_number = random_number
+  def initialize(key, date=Time.new)
+    @key = key
     @date = date
   end
 
-  def keys(random_number)
-    split_number = random_number.split("")
+  def split_up_key(key)
+    split_number = key.split("")
     keys = []
     index = 0
     split_number.each do |num|
@@ -37,10 +37,9 @@ class Shift
   end
 
   def shift_values
-    numbers = offset_numbers(date_format).zip(keys(random_number))
-    #pry(#<Shift>)> numbers => [[9, 4], [6, 40], [1, 3], [6, 39]]
-    numbers.map do |arr|
-      arr.sum
+    numbers = offset_numbers(date_format).zip(split_up_key(key))
+    numbers.map do |sub_arr|
+      sub_arr.sum
     end
   end
 

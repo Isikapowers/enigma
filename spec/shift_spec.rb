@@ -10,7 +10,7 @@ RSpec.describe Shift do
 
     it "exists and has attributes" do
       expect(shift).to be_a(Shift)
-      expect(shift.random_number).to eq("04039")
+      expect(shift.key).to eq("04039")
       expect(shift.date).to eq("041290")
     end
   end
@@ -18,8 +18,8 @@ RSpec.describe Shift do
   context "Methods" do
     shift = Shift.new("04039", "241296")
 
-    it "can get key from random number" do
-      expect(shift.keys("04039")).to eq([04, 40, 03, 39])
+    it "can get split up key into 4 groups fo 2 digits" do
+      expect(shift.split_up_key("04039")).to eq([04, 40, 03, 39])
     end
 
     it "can format date into numbers" do
