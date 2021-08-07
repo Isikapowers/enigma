@@ -20,7 +20,11 @@ class Shift
     keys
   end
 
+<<<<<<< HEAD
   def date_formats
+=======
+  def date_format
+>>>>>>> 852b37d1a8a1fb75ef6e4e658da2128bf30140f8
     if @date.class == Time
       @date.strftime("%d%m%y").to_i
     elsif

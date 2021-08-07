@@ -1,27 +1,40 @@
+require "date"
+# require_relative "shift"
+# require_relative "rotation"
+# require_relative "num_generator"
+
 class Enigma
 
-  def initialize
-    # @encryption =
+  def date_converter(date)
+    if date.class == Time
+      date.strftime("%d%m%y")
+    else
+      date
+    end
   end
 
-  def today_date(date=Time.now)
-    date.strftime("%d%m%y")
-  end  
+  def encrypt(message, key=NumGenerator.new.randomizer, date=Time.new)
+    shift_amounts = Shift.new(key, date).shift_values
+    rotator = Rotation.new(message, key, date)
 
-  def encrypt(message, key, date=today_date)
-    encrypted_msg = {}
-
-    { encryption: "",
-      key: key,
-      date: date }
+    encrypted_msg =
+          {
+          encryption: rotator.rotate_forwards(message, shift_amounts),
+          key: key,
+          date: date_converter(date)
+          }
   end
 
-  def decrypt(message, key, date)
-    decrypted_msg = {}
+  def decrypt(message, key, date=Time.new)
+    shift_amounts = Shift.new(key, date).shift_values
+    rotator = Rotation.new(message, key, date)
 
-    { decryption: "",
-      key: key,
-      date: date }
+    decrypted_msg =
+          {
+          decryption: rotator.rotate_backwards(message, shift_amounts),
+          key: key,
+          date: date_converter(date)
+          }
   end
 
 end

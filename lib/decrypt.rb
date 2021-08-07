@@ -12,4 +12,7 @@ decrypter = open(decrypted_file, "w")
 decrypter.write(result[:decryption])
 
 puts "Created '#{decrypted_file}' with the key #{result[:key]}, date #{result[:date]}"
+<<<<<<< HEAD
 s
+=======
+>>>>>>> 852b37d1a8a1fb75ef6e4e658da2128bf30140f8
