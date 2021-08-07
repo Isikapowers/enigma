@@ -22,5 +22,12 @@ RSpec.describe NumGenerator do
 
       expect(generator.randomizer).to eq("41298")
     end
+
+    it "can generate random 5 digit numbers" do
+      # generator = double("g")
+      allow(generator).to receive(:randomizer).and_return("84905")
+
+      expect(generator.randomizer).to eq("84905")
+    end
   end
 end

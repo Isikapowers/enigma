@@ -68,5 +68,25 @@ RSpec.describe Rotation do
       expect(rotation.letter_conversion("h", 8, [13, 46, 4, 45], -1)).to eq("v")
     end
   end
-  
+
+  context "Edge cases" do
+    rotation = Rotation.new("hello world!", "04039", "241296")
+    rotation2 = Rotation.new("GOODBYE world?", "57329", "180698")
+
+    shift_amounts = Shift.new("02715", "040895").shift_values
+
+    it "can convert letters using index backwards with special character" do
+      expect(rotation.letter_conversion("!", 8, [13, 46, 4, 45], -1)).to eq("!")
+      expect(rotation2.letter_conversion("?", 8, [13, 46, 4, 45], -1)).to eq("?")
+
+      expected = "uxpcas fddh?"
+
+      expect(rotation.rotate_forwards("hello world?", [13, 46, 4, 45])).to eq(expected)
+
+      expected = "hello world?"
+
+      expect(rotation.rotate_backwards("uxpcas fddh?", [13, 46, 4, 45])).to eq(expected)
+    end
+  end
+
 end
