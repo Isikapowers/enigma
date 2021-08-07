@@ -26,6 +26,12 @@ RSpec.describe Shift do
       expect(shift.date_format).to eq(241296)
     end
 
+    it "can format date into numbers" do
+      allow(shift).to receive(:date_format).and_return(Time.new.strftime("%d%m%y"))
+
+      expect(shift.date_format).to eq("070821")
+    end
+
     it "can get offset numbers" do
       expect(shift.offset_numbers(241296)).to eq([9, 6, 1, 6])
       #58,223,759,616

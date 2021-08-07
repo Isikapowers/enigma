@@ -18,9 +18,9 @@ RSpec.describe NumGenerator do
     generator = NumGenerator.new
 
     it "can generate random 5 digit numbers" do
-      allow(NumGenerator).to receive(:randomizer).and_return("041298")
+      allow(generator).to receive(:randomizer).and_return("41298")
 
-      expect(generator.randomizer).to eq("041298")
+      expect(generator.randomizer).to eq("41298")
     end
   end
 end

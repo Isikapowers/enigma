@@ -1,7 +1,7 @@
 require "date"
-# require_relative "shift"
-# require_relative "rotation"
-# require_relative "num_generator"
+require_relative "shift"
+require_relative "rotation"
+require_relative "num_generator"
 
 class Enigma
 

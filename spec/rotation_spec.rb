@@ -68,4 +68,5 @@ RSpec.describe Rotation do
       expect(rotation.letter_conversion("h", 8, [13, 46, 4, 45], -1)).to eq("v")
     end
   end
+  
 end
