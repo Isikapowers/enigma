@@ -4,7 +4,7 @@ excrypted_file, decrypted_file, key, date=ARGV
 
 enigma = Enigma.new
 
-encrypted_text = open(encryted_file, "r") { |file| file.read }
+encrypted_text = open(encrypted_file, "r") { |file| file.read }
 
 result = enigma.decrypt(encrypted_text, key, date)
 
