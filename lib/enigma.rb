@@ -1,7 +1,7 @@
 require "date"
-require "./lib/shift"
-require "./lib/rotator"
-require './lib/num_generator'
+# require_relative "shift"
+# require_relative "rotation"
+# require_relative "num_generator"
 
 class Enigma
 
@@ -14,27 +14,27 @@ class Enigma
   end
 
   def encrypt(message, key=NumGenerator.new.randomizer, date=Time.new)
-    encrypted_msg = {}
-
     shift_amounts = Shift.new(key, date).shift_values
-    
-    encrypted_msg[:encryption] = Rotator.new.rotate_forwards(message, shift_amounts)
-    encrypted_msg[:key] = key
-    encrypted_msg[:date] = date_converter(data)
+    rotator = Rotation.new(message, key, date)
 
-    encrypted_msg
+    encrypted_msg =
+          {
+          encryption: rotator.rotate_forwards(message, shift_amounts),
+          key: key,
+          date: date_converter(date)
+          }
   end
 
   def decrypt(message, key, date=Time.new)
-    decrypted_msg = {}
-
     shift_amounts = Shift.new(key, date).shift_values
+    rotator = Rotation.new(message, key, date)
 
-    decrypted_msg[:decryption] = Rotator.new.rotate_backwards(message, shift_amounts)
-    decrypted_msg[:key] = key
-    decrypted_msg[:date] = date_converter(data)
-
-    decrypted_msg
+    decrypted_msg =
+          {
+          decryption: rotator.rotate_backwards(message, shift_amounts),
+          key: key,
+          date: date_converter(date)
+          }
   end
 
 end
