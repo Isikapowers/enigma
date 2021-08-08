@@ -1,11 +1,14 @@
 require "date"
+require_relative "key_generator"
 
 class Shift
+
+  include KeyGenerator
 
   attr_reader :key,
               :date
 
-  def initialize(key, date=Time.new)
+  def initialize(key=random_key_generator, date=Time.new)
     @key = key
     @date = date
   end
@@ -15,7 +18,7 @@ class Shift
     keys = []
     index = 0
     split_number.each do |num|
-      keys << (num + split_number[index + 1]).to_i
+      keys << (num.concat(split_number[index + 1])).to_i
       index += 1
       break if keys.length == 4
     end
@@ -36,10 +39,10 @@ class Shift
     num.to_s.split("")[-4..-1].map { |num| num.to_i }
   end
 
-  def shift_values
-    numbers = offset_numbers(date_format).zip(split_up_key(key))
-    numbers.map do |sub_arr|
-      sub_arr.sum
+  def key_offset_total_value_pairs
+    key_offset_pairs = offset_numbers(date_format).zip(split_up_key(key))
+    key_offset_pairs.map do |key_offset|
+      key_offset.sum
     end
   end
 

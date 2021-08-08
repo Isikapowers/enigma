@@ -1,13 +1,16 @@
-require_relative "./shift"
+require_relative "shift"
+require_relative "key_generator"
 
 class Rotation
+
+  include KeyGenerator
 
   attr_reader :message,
               :key,
               :date,
               :characters
 
-  def initialize(message, key, date)
+  def initialize(message, key=random_key_generator, date)
     @message = message.downcase
     @key = key
     @date = date
@@ -18,24 +21,24 @@ class Rotation
     @message = message.split("")
   end
 
-  def rotate_forwards(message, shift_amounts)
-    encoded_message = split_msg(message).map.with_index do |character, index|
-      letter_conversion(character, index, shift_amounts, 1)
+  def rotate_forwards(message, final_shifts)
+    encrypted_message = split_msg(message).map.with_index do |character, index|
+      letter_conversion(character, index, final_shifts, 1)
     end
-    encoded_message.join
+    encrypted_message.join
   end
 
-  def rotate_backwards(message, shift_amounts)
-    encoded_message = split_msg(message).map.with_index do |character, index|
-      letter_conversion(character, index, shift_amounts, -1)
+  def rotate_backwards(message, final_shifts)
+    decrypted_message = split_msg(message).map.with_index do |character, index|
+      letter_conversion(character, index, final_shifts, -1)
     end
-    encoded_message.join
+    decrypted_message.join
   end
 
-  def letter_conversion(character, index, shift_amounts, direction)
+  def letter_conversion(character, index, final_shifts, direction)
     if character_index = @characters.index(character)
-      shift_index = index % (shift_amounts.length)
-      rotated_alphabet = @characters.rotate(direction * shift_amounts[shift_index])
+      shift_index = index % (final_shifts.length)
+      rotated_alphabet = @characters.rotate(direction * final_shifts[shift_index])
       rotated_alphabet[character_index]
     else
       character

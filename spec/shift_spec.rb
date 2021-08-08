@@ -3,6 +3,7 @@ SimpleCov.start
 
 require "date"
 require "./lib/shift"
+require "./lib/key_generator"
 
 RSpec.describe Shift do
   context "States" do
@@ -38,7 +39,7 @@ RSpec.describe Shift do
     end
 
     it "can calculate shift values for each position(A, B, C, D)" do
-      expect(shift.shift_values).to eq([13, 46, 4, 45])
+      expect(shift.key_offset_total_value_pairs).to eq([13, 46, 4, 45])
     end
   end
 end

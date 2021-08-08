@@ -5,7 +5,7 @@ require "date"
 require "./lib/enigma"
 require "./lib/shift"
 require "./lib/rotation"
-require "./num_generator"
+require "./lib/key_generator"
 
 RSpec.describe Enigma do
   context "States" do
@@ -62,6 +62,22 @@ RSpec.describe Enigma do
                   date: "070821"
                   }
       expect(enigma.decrypt("nefau qdxly", "02715")).to eq(expected)
+    end
+  end
+
+  describe "::NumGenerator Module" do
+    enigma = Enigma.new
+
+    it "can generate random 5 digit numbers" do
+      allow(enigma).to receive(:random_key_generator).and_return("41298")
+
+      expect(enigma.random_key_generator).to eq("41298")
+    end
+
+    it "can generate random 5 digit numbers" do
+      allow(enigma).to receive(:random_key_generator).and_return("84905")
+
+      expect(enigma.random_key_generator).to eq("84905")
     end
   end
 

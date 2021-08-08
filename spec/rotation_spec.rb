@@ -4,6 +4,7 @@ SimpleCov.start
 require "date"
 require "./lib/rotation"
 require "./lib/shift"
+require "./key_generator"
 
 RSpec.describe Rotation do
   context "States" do
@@ -27,7 +28,7 @@ RSpec.describe Rotation do
     rotation = Rotation.new("hello world", "04039", "241296")
     rotation2 = Rotation.new("GOODBYE world", "57329", "180698")
 
-    shift_amounts = Shift.new("02715", "040895").shift_values
+    final_shifts = Shift.new("02715", "040895").key_offset_total_value_pairs
 
     it "exists and has attributes" do
       expect(rotation).to be_a(Rotation)
@@ -73,7 +74,7 @@ RSpec.describe Rotation do
     rotation = Rotation.new("hello world!", "04039", "241296")
     rotation2 = Rotation.new("GOODBYE world?", "57329", "180698")
 
-    shift_amounts = Shift.new("02715", "040895").shift_values
+    final_shifts = Shift.new("02715", "040895").key_offset_total_value_pairs
 
     it "can convert letters using index backwards with special character" do
       expect(rotation.letter_conversion("!", 8, [13, 46, 4, 45], -1)).to eq("!")
