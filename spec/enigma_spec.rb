@@ -34,7 +34,7 @@ RSpec.describe Enigma do
       expected = {
                   encryption: "nefau qdxly",
                   key: "02715",
-                  date: "070821"
+                  date: Time.new.strftime("%d%m%y")
                  }
 
       expect(enigma.encrypt("hello world", "02715")).to eq(expected)
@@ -59,14 +59,18 @@ RSpec.describe Enigma do
       expected = {
                   decryption: "hello world",
                   key: "02715",
-                  date: "070821"
+                  date: Time.new.strftime("%d%m%y")
                   }
       expect(enigma.decrypt("nefau qdxly", "02715")).to eq(expected)
     end
   end
 
-  describe "::NumGenerator Module" do
+  describe "::KeyGenerator Module" do
     enigma = Enigma.new
+
+    it "can generate 5 digits" do
+      expect(enigma.random_key_generator).to eq("12345")
+    end
 
     it "can generate random 5 digit numbers" do
       allow(enigma).to receive(:random_key_generator).and_return("41298")

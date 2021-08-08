@@ -30,7 +30,7 @@ RSpec.describe Shift do
     it "can format date into numbers" do
       allow(shift).to receive(:date_format).and_return(Time.new.strftime("%d%m%y"))
 
-      expect(shift.date_format).to eq("070821")
+      expect(shift.date_format).to eq(Time.new.strftime("%d%m%y"))
     end
 
     it "can get offset numbers" do
