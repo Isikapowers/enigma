@@ -1,5 +1,3 @@
-require_relative "shift"
-
 class Rotation
 
   attr_reader :message,

@@ -22,14 +22,22 @@ RSpec.describe Shift do
       expect(shift.split_up_key("04039")).to eq([04, 40, 03, 39])
     end
 
-    it "can format date into numbers" do
-      expect(shift.date_format).to eq(241296)
+    it "can get split up key into 4 groups fo 2 digits" do
+      expect(shift.split_up_key("00352")).to eq([00, 03, 35, 52])
+    end
+
+    it "can get split up key into 4 groups fo 2 digits" do
+      expect(shift.split_up_key("12345")).to eq([12, 23, 34, 45])
     end
 
     it "can format date into numbers" do
-      allow(shift).to receive(:date_format).and_return(Time.new.strftime("%d%m%y"))
+      expect(shift.date_format_int).to eq(241296)
+    end
 
-      expect(shift.date_format).to eq(Time.new.strftime("%d%m%y"))
+    it "can format date into numbers" do
+      allow(shift).to receive(:date_format_int).and_return(Time.new.strftime("%d%m%y"))
+
+      expect(shift.date_format_int).to eq(Time.new.strftime("%d%m%y"))
     end
 
     it "can get offset numbers" do

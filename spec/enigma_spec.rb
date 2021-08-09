@@ -16,7 +16,7 @@ RSpec.describe Enigma do
     end
   end
 
-  describe "#encrypt" do
+  describe "#Encrypt" do
     enigma = Enigma.new
 
     it "can encrypt a message with given key and given date" do
@@ -25,6 +25,7 @@ RSpec.describe Enigma do
                    key: "02715",
                    date: "040895"
                  }
+
       expect(enigma.encrypt("hello world", "02715", "040895")).to eq(expected)
     end
 
@@ -54,7 +55,7 @@ RSpec.describe Enigma do
     end
   end
 
-  describe "#decrypt" do
+  describe "#Decrypt" do
     enigma = Enigma.new
 
     it "can decrypt a message with given key and given date" do
@@ -63,6 +64,7 @@ RSpec.describe Enigma do
                    key: "02715",
                    date: "040895"
                  }
+
       expect(enigma.decrypt("keder ohulw", "02715", "040895")).to eq(expected)
     end
 
@@ -74,6 +76,7 @@ RSpec.describe Enigma do
                    key: "02715",
                    date: Time.new.strftime("%d%m%y")
                  }
+
       expect(enigma.decrypt("nefau qdxly", "02715")).to eq(expected)
     end
   end
