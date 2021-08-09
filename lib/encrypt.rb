@@ -1,10 +1,12 @@
 require "./lib/enigma"
 
-message, encrypted_file=ARGV
-
 enigma = Enigma.new
 
 message = open(ARGV[0], "r") { |file| file.read }
+
+# key = ARGV[2]
+#
+# date = ARGV[3]
 
 result = enigma.encrypt(message)
 

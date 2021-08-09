@@ -78,7 +78,7 @@ RSpec.describe Enigma do
     end
   end
 
-  describe "::KeyGenerator Module" do
+  describe "::KeyGenerator" do
     enigma = Enigma.new
 
     it "can generate 5 digit number" do

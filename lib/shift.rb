@@ -1,14 +1,11 @@
 require "date"
-require_relative "key_generator"
 
 class Shift
-
-  include KeyGenerator
 
   attr_reader :key,
               :date
 
-  def initialize(key=random_key_generator, date=Time.new)
+  def initialize(key, date)
     @key = key
     @date = date
   end
@@ -27,12 +24,6 @@ class Shift
 
   def date_format
     @date.class == String ? @date.to_i : @date.strftime("%d%m%y").to_i
-    # if @date.class == Time
-    #   @date.strftime("%d%m%y").to_i
-    # elsif
-    #   @date.class == String
-    #   @date.to_i
-    # end
   end
 
   def offset_numbers(date_format)

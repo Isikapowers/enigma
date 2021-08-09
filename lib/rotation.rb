@@ -1,24 +1,17 @@
 require_relative "shift"
-require_relative "key_generator"
 
 class Rotation
 
-  include KeyGenerator
-
   attr_reader :message,
-              :key,
-              :date,
               :characters
 
-  def initialize(message, key, date=Time.new)
-    @message = message.downcase
-    @key = key
-    @date = date
+  def initialize(message)
+    @message = message
     @characters = ("a".."z").to_a << " "
   end
 
   def split_message(message)
-    @message = message.split("")
+    @message = message.downcase.split("")
   end
 
   def rotate_forwards(message, final_shifts)

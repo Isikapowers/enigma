@@ -9,7 +9,7 @@ class Enigma
 
   def encrypt(message, key=random_key_generator, date=Time.new)
     final_shifts = Shift.new(key, date).key_offset_total_value_pairs
-    rotator = Rotation.new(message, key, date)
+    rotator = Rotation.new(message)
 
     encrypted_msg =
         {
@@ -21,7 +21,7 @@ class Enigma
 
   def decrypt(message, key, date=Time.new)
     final_shifts = Shift.new(key, date).key_offset_total_value_pairs
-    rotator = Rotation.new(message, key, date)
+    rotator = Rotation.new(message)
 
     decrypted_msg =
         {

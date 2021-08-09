@@ -1,13 +1,15 @@
 require "date"
 require "./lib/enigma"
 
-encrypted_file, decrypted_file, key, date=ARGV
-
 enigma = Enigma.new
 
 encrypted_message = open(ARGV[0], "r") { |file| file.read }
 
-result = enigma.decrypt(encrypted_message, key, date)
+key = ARGV[2]
+
+date = ARGV[3]
+
+result = enigma.decrypt(encrypted_message, key, date=Time.new)
 
 decrypter = open(ARGV[1], "w")
   decrypter.write(result[:decryption])

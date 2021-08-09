@@ -4,17 +4,14 @@ SimpleCov.start
 require "date"
 require "./lib/rotation"
 require "./lib/shift"
-require "./key_generator"
 
 RSpec.describe Rotation do
   context "States" do
-    rotation = Rotation.new("hello world", "02715", "040895")
+    rotation = Rotation.new("hello world")
 
     it "exists and has attributes" do
       expect(rotation).to be_a(Rotation)
       expect(rotation.message).to eq("hello world")
-      expect(rotation.key).to eq("02715")
-      expect(rotation.date).to eq("040895")
 
       expected = ["a", "b", "c", "d", "e", "f", "g", "h", "i",
                   "j", "k", "l", "m", "n", "o", "p", "q", "r",
@@ -25,68 +22,80 @@ RSpec.describe Rotation do
   end
 
   context "Methods" do
-    rotation = Rotation.new("hello world", "04039", "241296")
-    rotation2 = Rotation.new("GOODBYE world", "57329", "180698")
+    rotation = Rotation.new("hello world")
+    rotation2 = Rotation.new("GOODBYE world")
 
     final_shifts = Shift.new("02715", "040895").key_offset_total_value_pairs
 
-    it "exists and has attributes" do
-      expect(rotation).to be_a(Rotation)
-      expect(rotation.message).to eq("hello world")
-      expect(rotation.key).to eq("04039")
-      expect(rotation.date).to eq("241296")
+    it "can calculate final shifts from date and year" do
+      expect(final_shifts).to eq([3, 27, 73, 20])
     end
 
-    it "can handle upper case input" do
-      expect(rotation2.message).to eq("goodbye world")
-      expect(rotation2.key).to eq("57329")
-      expect(rotation2.date).to eq("180698")
-    end
-
-    it "can split up message" do
+    it "can handle upper case and split up message" do
       expected = ["h", "e", "l", "l", "o", " ", "w", "o", "r", "l", "d"]
 
-      expect(rotation.split_message("hello world")).to eq(expected)
+      expect(rotation.split_message("hEllo woRld")).to eq(expected)
+
+      expected = ["g", "o", "o", "d", "b", "y", "e", " ", "w", "o", "r", "l", "d"]
+
+      expect(rotation2.split_message("GOODBYE world")).to eq(expected)
     end
 
     it "can rotate forwards for encryption" do
-      expected = "uxpcas fddh"
+      expected = "keder ohulw"
 
-      expect(rotation.rotate_forwards("hello world", [13, 46, 4, 45])).to eq(expected)
+      expect(rotation.rotate_forwards("hello world", final_shifts)).to eq(expected)
     end
 
     it "can rotate backwards for decryption" do
       expected = "hello world"
 
-      expect(rotation.rotate_backwards("uxpcas fddh", [13, 46, 4, 45])).to eq(expected)
+      expect(rotation.rotate_backwards("keder ohulw", final_shifts)).to eq(expected)
     end
 
     it "can convert letters using index forwards" do
-      expect(rotation.letter_conversion("h", 8, [13, 46, 4, 45], 1)).to eq("u")
+      expect(rotation.letter_conversion("h", 8, final_shifts, 1)).to eq("k")
     end
 
     it "can convert letters using index backwards" do
-      expect(rotation.letter_conversion("h", 8, [13, 46, 4, 45], -1)).to eq("v")
+      expect(rotation.letter_conversion("h", 8, final_shifts, -1)).to eq("e")
     end
   end
 
-  context "Edge cases" do
-    rotation = Rotation.new("hello world!", "04039", "241296")
-    rotation2 = Rotation.new("GOODBYE world?", "57329", "180698")
+  context "Edge Cases" do
+    rotation = Rotation.new("hello world!")
+    rotation2 = Rotation.new("GOODBYE world?")
 
     final_shifts = Shift.new("02715", "040895").key_offset_total_value_pairs
 
-    it "can convert letters using index backwards with special character" do
-      expect(rotation.letter_conversion("!", 8, [13, 46, 4, 45], -1)).to eq("!")
-      expect(rotation2.letter_conversion("?", 8, [13, 46, 4, 45], -1)).to eq("?")
+    it "can calculate final shifts from date and year" do
+      expect(final_shifts).to eq([3, 27, 73, 20])
+    end
 
-      expected = "uxpcas fddh?"
+    it "can return special character unconverted" do
+      expect(rotation.letter_conversion("!", 8, final_shifts, 1)).to eq("!")
+      expect(rotation.letter_conversion("!", 8, final_shifts, -1)).to eq("!")
 
-      expect(rotation.rotate_forwards("hello world?", [13, 46, 4, 45])).to eq(expected)
+      expected = "keder ohulw!"
+
+      expect(rotation.rotate_forwards("hello world!", final_shifts)).to eq(expected)
+
+      expected = "hello world!"
+
+      expect(rotation.rotate_backwards("keder ohulw!", final_shifts)).to eq(expected)
+    end
+
+    it "can return special character unconverted" do
+      expect(rotation2.letter_conversion("?", 8, final_shifts, 1)).to eq("?")
+      expect(rotation2.letter_conversion("?", 8, final_shifts, -1)).to eq("?")
+
+      expected = "keder ohulw?"
+
+      expect(rotation2.rotate_forwards("hello world?", final_shifts)).to eq(expected)
 
       expected = "hello world?"
 
-      expect(rotation.rotate_backwards("uxpcas fddh?", [13, 46, 4, 45])).to eq(expected)
+      expect(rotation2.rotate_backwards("keder ohulw?", final_shifts)).to eq(expected)
     end
   end
 
