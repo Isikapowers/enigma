@@ -10,4 +10,4 @@
 - **"Above Expectations"** -- all classes and methods are well named and no methods are more than 10 lines long.  Appropriate enumerators are used.
 
 ### Test Driven Development ###
-- **"Above Expectations"** -- stubs are used to make tests more robust with generating random keys.
+- **"Above Expectations"** -- stubs are used to make tests more robust with generating random keys.  Test coverage is 100% covered.

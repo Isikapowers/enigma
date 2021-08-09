@@ -10,26 +10,26 @@ class Rotation
               :date,
               :characters
 
-  def initialize(message, key=random_key_generator, date)
+  def initialize(message, key, date=Time.new)
     @message = message.downcase
     @key = key
     @date = date
     @characters = ("a".."z").to_a << " "
   end
 
-  def split_msg(message)
+  def split_message(message)
     @message = message.split("")
   end
 
   def rotate_forwards(message, final_shifts)
-    encrypted_message = split_msg(message).map.with_index do |character, index|
+    encrypted_message = split_message(message).map.with_index do |character, index|
       letter_conversion(character, index, final_shifts, 1)
     end
     encrypted_message.join
   end
 
   def rotate_backwards(message, final_shifts)
-    decrypted_message = split_msg(message).map.with_index do |character, index|
+    decrypted_message = split_message(message).map.with_index do |character, index|
       letter_conversion(character, index, final_shifts, -1)
     end
     decrypted_message.join

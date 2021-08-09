@@ -26,12 +26,13 @@ class Shift
   end
 
   def date_format
-    if @date.class == Time
-      @date.strftime("%d%m%y").to_i
-    elsif
-      @date.class == String
-      @date.to_i
-    end
+    @date.class == String ? @date.to_i : @date.strftime("%d%m%y").to_i
+    # if @date.class == Time
+    #   @date.strftime("%d%m%y").to_i
+    # elsif
+    #   @date.class == String
+    #   @date.to_i
+    # end
   end
 
   def offset_numbers(date_format)

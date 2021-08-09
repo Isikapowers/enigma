@@ -12,11 +12,11 @@ class Enigma
     rotator = Rotation.new(message, key, date)
 
     encrypted_msg =
-          {
+        {
           encryption: rotator.rotate_forwards(message, final_shifts),
           key: key,
           date: date_converter(date)
-          }
+        }
   end
 
   def decrypt(message, key, date=Time.new)
@@ -24,19 +24,15 @@ class Enigma
     rotator = Rotation.new(message, key, date)
 
     decrypted_msg =
-          {
+        {
           decryption: rotator.rotate_backwards(message, final_shifts),
           key: key,
           date: date_converter(date)
-          }
+        }
   end
 
   def date_converter(date)
-    if date.class == Time
-      date.strftime("%d%m%y")
-    else
-      date
-    end
+    date.class == String ? date : date.strftime("%d%m%y")
   end
 
 end

@@ -46,7 +46,7 @@ RSpec.describe Rotation do
     it "can split up message" do
       expected = ["h", "e", "l", "l", "o", " ", "w", "o", "r", "l", "d"]
 
-      expect(rotation.split_msg("hello world")).to eq(expected)
+      expect(rotation.split_message("hello world")).to eq(expected)
     end
 
     it "can rotate forwards for encryption" do
