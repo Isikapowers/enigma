@@ -60,12 +60,12 @@ RSpec.describe Enigma do
 
     it "can decrypt a message with given key and given date" do
       expected = {
-                   decryption: "hello world",
+                   decryption: "hello world!",
                    key: "02715",
                    date: "040895"
                  }
 
-      expect(enigma.decrypt("keder ohulw", "02715", "040895")).to eq(expected)
+      expect(enigma.decrypt("keder ohulw!", "02715", "040895")).to eq(expected)
     end
 
     it "can decrypt a message with given key and today's date" do
