@@ -1,5 +1,5 @@
 require "date"
-require "./lib/enigma"
+require_relative "enigma"
 
 enigma = Enigma.new
 

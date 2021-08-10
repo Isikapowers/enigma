@@ -13,7 +13,7 @@ class Enigma
 
     encrypted_msg =
         {
-          encryption: rotator.rotate_forwards(message, final_shifts),
+          encryption: rotator.forwards(message, final_shifts),
           key: key,
           date: date_converter(date)
         }
@@ -25,7 +25,7 @@ class Enigma
 
     decrypted_msg =
         {
-          decryption: rotator.rotate_backwards(message, final_shifts),
+          decryption: rotator.backwards(message, final_shifts),
           key: key,
           date: date_converter(date)
         }

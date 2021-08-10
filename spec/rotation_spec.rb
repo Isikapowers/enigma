@@ -44,13 +44,13 @@ RSpec.describe Rotation do
     it "can rotate forwards for encryption" do
       expected = "keder ohulw"
 
-      expect(rotation.rotate_forwards("hello world", final_shifts)).to eq(expected)
+      expect(rotation.forwards("hello world", final_shifts)).to eq(expected)
     end
 
     it "can rotate backwards for decryption" do
       expected = "hello world"
 
-      expect(rotation.rotate_backwards("keder ohulw", final_shifts)).to eq(expected)
+      expect(rotation.backwards("keder ohulw", final_shifts)).to eq(expected)
     end
 
     it "can convert letters using index forwards" do
@@ -78,11 +78,11 @@ RSpec.describe Rotation do
 
       expected = "keder ohulw!"
 
-      expect(rotation.rotate_forwards("hello world!", final_shifts)).to eq(expected)
+      expect(rotation.forwards("hello world!", final_shifts)).to eq(expected)
 
       expected = "hello world!"
 
-      expect(rotation.rotate_backwards("keder ohulw!", final_shifts)).to eq(expected)
+      expect(rotation.backwards("keder ohulw!", final_shifts)).to eq(expected)
     end
 
     it "can return special character unconverted" do
@@ -91,11 +91,11 @@ RSpec.describe Rotation do
 
       expected = "keder ohulw?"
 
-      expect(rotation2.rotate_forwards("hello world?", final_shifts)).to eq(expected)
+      expect(rotation2.forwards("hello world?", final_shifts)).to eq(expected)
 
       expected = "hello world?"
 
-      expect(rotation2.rotate_backwards("keder ohulw?", final_shifts)).to eq(expected)
+      expect(rotation2.backwards("keder ohulw?", final_shifts)).to eq(expected)
     end
   end
 
