@@ -13,7 +13,7 @@
 ## General info
 This project uses Ruby to build a tool for cracking an encryption algorithm and requires throughout planout regarding classes to use as well as understanding of the Encryption Algorithm.
 
-The encryption is based on the Caesar Cipher. The idea is that we can translate a character by shifting it a certain number of places down the alphabet. For more on the Caesar cipher, See This [Description][http://practicalcryptography.com/ciphers/caesar-cipher] or the [Wikipedia Page][https://en.wikipedia.org/wiki/Caesar_cipher]
+The encryption is based on the Caesar Cipher. The idea is that we can translate a character by shifting it a certain number of places down the alphabet. For more on the Caesar cipher, See This [Description](http://practicalcryptography.com/ciphers/caesar-cipher) or the [Wikipedia Page](https://en.wikipedia.org/wiki/Caesar_cipher)
 
 However, instead of using the same shift for every character, our algorithm will use 4 different shifts known as the A, B, C, and D shifts. Every fourth character will be shifted by the same amount, so the 1st, 5th, and 9th characters will be shifted with the A shift, the 2nd, 6th, and 10th characters will be shifted with the B shift, etc.
 
